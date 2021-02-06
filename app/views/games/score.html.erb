@@ -1,0 +1,15 @@
+<h1>Result</h1>
+<% t = (@word.split('').length - @word.split('').uniq.length) > (@letters.length - @letters.uniq.length)%>
+<% test = @word.split('').map { |w| params[:letters].include?(w) }%>
+<% if @result['found'] %>
+  <%  result = "Your word '#{@word}' is correct!"
+  elsif test.include?(false) || t
+    result = "Your word '#{@word}' isn't in the list..."
+  else
+    result = "Your word '#{@word}' is incorrect..."
+  end%>
+<%= result %>
+<br>
+<% @result['found'] ? score = @word.length**2 : score = "0, sorry..."%>
+<p>Your score is <%=score%></p>
+<%= link_to "Play again", "/new" %>

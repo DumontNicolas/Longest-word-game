@@ -1,0 +1,16 @@
+<h1>New Game</h1>
+
+<div style="display: inline-flex">
+<% @letters.each do |letter|%>
+  <div style="background-color: lightblue; margin: 8px; padding: 8px; width:28px; line-height: 28px; text-justify: center; text-align: center; font-weight: bold"><%= letter.capitalize %></div>
+<%end%>
+</div>
+
+<p>What is the longest word you can find?</p>
+<form action="/score" method="post" style="display: flex;">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :letters, @letters %>
+  <input type="text" name ="word" placeholder="Choose your word" style="width:100%; height:32px;">
+  <input type="submit" value="Play">
+</form>
+
